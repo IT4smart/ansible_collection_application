@@ -1,4 +1,4 @@
-- name: Debian | Install podman suite of tools
+- name: debian | Install podman suite of tools
   ansible.builtin.apt:
     name: ['podman']
     update_cache: true

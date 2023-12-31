@@ -13,4 +13,3 @@
 - name: Include tasks for debian
   ansible.builtin.include_tasks: debian.yml
   when: ansible_distribution == "Debian"
-  

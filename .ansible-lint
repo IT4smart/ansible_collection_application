@@ -5,6 +5,7 @@ exclude_paths:
     - .github/workflows/
     - .github/
     - docs/docsite/
+    - codecov.yml
 
 loop_var_prefix: "^(__|{role}_)"
 
@@ -18,20 +19,18 @@ skip_list:
   - skip_this_tag
 
 enable_list:
-  - args
-  - empty-string-compare # opt-in
-  - no-log-password # opt-in
-  - no-same-owner # opt-in
-  - name[prefix] # opt-in
-  # add yaml here if you want to avoid ignoring yaml checks when yamllint
-  # library is missing. Normally its absence just skips using that rule.
-  - yaml
+    - args
+    - empty-string-compare # opt-in
+    - no-log-password # opt-in
+    - no-same-owner # opt-in
+    - name[prefix] # opt-in
+    - yaml
 
 warn_list:
-  - skip_this_tag
-  - experimental
+    - skip_this_tag
+    - experimental
 
 kinds:
-  - yaml: "**/*.yaml-too"
+    - yaml: "**/*.yaml-too"
 
 task_name_prefix: "{stem} | "
