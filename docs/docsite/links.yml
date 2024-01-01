@@ -1,0 +1,7 @@
+edit_on_github:
+  repository: IT4smart/ansible_collection_application
+  branch: main
+  path_prefix: ''
+extra_links:
+  - description: Report an issue
+    url: https://github.com/IT4smart/ansible_collection_application/issues/new/choose
