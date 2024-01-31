@@ -1,0 +1,15 @@
+- name: Ensure directory /etc/containers exists
+  ansible.builtin.file:
+    path: /etc/containers
+    state: directory
+  become: true
+
+- name: Ensure iptables is installed
+  ansible.builtin.package:
+    name: iptables
+    state: present
+  become: true
+
+- name: Include tasks for debian
+  ansible.builtin.include_tasks: debian.yml
+  when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"

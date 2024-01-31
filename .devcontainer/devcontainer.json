@@ -1,0 +1,22 @@
+{
+    "name": "IT4smart Ansible Collection Application",
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "vscode",
+    "runServices": [
+        "vscode"
+    ],
+    "shutdownAction": "stopCompose",
+    "workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "redhat.ansible",
+                "dhoeric.ansible-vault"
+            ]
+        }
+    },
+
+    "remoteUser": "vscode"
+}
