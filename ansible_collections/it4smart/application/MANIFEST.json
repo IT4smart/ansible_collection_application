@@ -1,0 +1,32 @@
+{
+ "collection_info": {
+  "namespace": "it4smart",
+  "name": "application",
+  "version": "0.1.0",
+  "authors": [
+   "hack3d (github.com/hack3d)"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "application",
+   "linux",
+   "windows"
+  ],
+  "description": "A collection of roles to deploy applications like podman, dhcp-server, pdc",
+  "license": [],
+  "license_file": "LICENSE",
+  "dependencies": {},
+  "repository": "https://github.com/IT4smart/ansible_collection_application",
+  "documentation": null,
+  "homepage": "https://github.com/IT4smart/ansible_collection_application",
+  "issues": "https://github.com/IT4smart/ansible_collection_application/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "be3a2e5068b190705845e7027a0219208e95487f4930231c52c29942bfed0203",
+  "format": 1
+ },
+ "format": 1
+}

@@ -1,0 +1,8 @@
+[Unit]
+Description=Podman cleanup timer
+
+[Timer]
+OnUnitInactiveSec=12h
+
+[Install]
+WantedBy=timers.target

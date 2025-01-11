@@ -1,0 +1,14 @@
+[Unit]
+Description=Podman cleanup
+Requires=podman.service
+After=podman.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/tmp
+User=root
+Group=root
+ExecStart=/usr/bin/podman system prune -af
+
+[Install]
+WantedBy=multi-user.target
