@@ -1,0 +1,36 @@
+- name: Create unifi-controller folder
+  ansible.builtin.file:
+    path: /opt/unifi
+    state: directory
+    recurse: true
+  become: true
+
+- name: Gather the package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: Set container runtime to podman
+  ansible.builtin.set_fact:
+    container_runtime: podman
+  when: "'podman' in ansible_facts.packages"
+
+- name: Configure systemd service
+  ansible.builtin.template:
+    src: unifi-controller_service.j2
+    dest: /etc/systemd/system/unifi-controller.service
+    mode: "0644"
+  become: true
+  register: _result_controller
+
+- name: Reload systemd service
+  ansible.builtin.systemd:
+    daemon_reload: true
+  become: true
+
+- name: Restart unifi-controller  # noqa: no-handler
+  ansible.builtin.systemd:
+    name: unifi-controller
+    state: restarted
+    enabled: true
+  become: true
+  when: _result_controller.changed

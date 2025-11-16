@@ -33,6 +33,7 @@
   ansible.builtin.template:
     src: podman-cleanup_service.j2
     dest: /etc/systemd/system/podman-cleanup.service
+    mode: "0644"
   become: true
 
 - name: debian | Reload systemd service
@@ -40,7 +41,7 @@
     daemon_reload: true
   become: true
 
-- name: debian | Enable podman cleanup timer 
+- name: debian | Enable podman cleanup timer
   ansible.builtin.systemd:
     name: podman-cleanup.timer
     enabled: true
