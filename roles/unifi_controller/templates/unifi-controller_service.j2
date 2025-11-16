@@ -1,7 +1,7 @@
 [Unit]
 Description=Unifi Controller
-After=docker.service
-Requires=docker.service
+After={{ container_runtime }}.service
+Requires={{ container_runtime }}.service
 
 [Service]
 TimeoutStartSec=0
