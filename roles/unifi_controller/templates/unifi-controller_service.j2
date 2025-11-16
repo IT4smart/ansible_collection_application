@@ -18,5 +18,4 @@ ExecStart=/usr/bin/{{ container_runtime }} run --name unifi-rpi --mount type=bin
 ExecStop=/usr/bin/{{ container_runtime }} stop unifi-rpi
 
 [Install]
-Alias=unifi
 WantedBy=multi-user.target
