@@ -1,0 +1,48 @@
+- name: debian | Install podman suite of tools
+  ansible.builtin.apt:
+    name: ['podman', 'podman-compose']
+    update_cache: true
+  become: true
+
+- name: debian | Configure default registries
+  ansible.builtin.template:
+    src: registries_conf.j2
+    dest: /etc/containers/registries.conf
+  become: true
+
+- name: debian | Create folder for systemd podman-compose
+  ansible.builtin.file:
+    path: /etc/podman/compose
+    state: directory
+    recurse: true
+  become: true
+
+- name: debian | Configure systemd for podman-compose
+  ansible.builtin.template:
+    src: podman-compose@_service.j2
+    dest: /etc/systemd/system/podman-compose@.service
+  become: true
+
+- name: debian | Configure podman cleanup timer
+  ansible.builtin.template:
+    src: podman-cleanup_timer.j2
+    dest: /etc/systemd/system/podman-cleanup.timer
+  become: true
+
+- name: debian | Configure podman cleanup service
+  ansible.builtin.template:
+    src: podman-cleanup_service.j2
+    dest: /etc/systemd/system/podman-cleanup.service
+    mode: "0644"
+  become: true
+
+- name: debian | Reload systemd service
+  ansible.builtin.systemd:
+    daemon_reload: true
+  become: true
+
+- name: debian | Enable podman cleanup timer
+  ansible.builtin.systemd:
+    name: podman-cleanup.timer
+    enabled: true
+  become: true

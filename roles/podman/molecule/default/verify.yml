@@ -1,0 +1,24 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Check if podman is installed
+      ansible.builtin.command: podman --version
+      register: podman_version
+      changed_when: false
+
+    - name: Assert podman is installed
+      ansible.builtin.assert:
+        that: podman_version.rc == 0
+        fail_msg: "Podman is not installed"
+
+    - name: Check if podman-compose is installed
+      ansible.builtin.command: podman-compose --version
+      register: podman_compose_version
+      changed_when: false
+
+    - name: Assert podman-compose is installed
+      ansible.builtin.assert:
+        that: podman_compose_version.rc == 0
+        fail_msg: "Podmand-Compose is not installed"

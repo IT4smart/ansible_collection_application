@@ -1,0 +1,21 @@
+[Unit]
+Description=Unifi Controller
+After={{ container_runtime }}.service
+Requires={{ container_runtime }}.service
+
+[Service]
+TimeoutStartSec=0
+TimeoutStopSec=30
+Restart=always
+RestartSec=10
+
+ExecStartPre=-/usr/bin/{{ container_runtime }} stop unifi-rpi
+ExecStartPre=-/usr/bin/{{ container_runtime }} rm unifi-rpi
+ExecStartPre=/usr/bin/{{ container_runtime }} pull ryansch/unifi-rpi:{{ unifi_controller_version }}
+
+ExecStart=/usr/bin/{{ container_runtime }} run --name unifi-rpi --mount type=bind,source=/opt/unifi,target=/var/lib/unifi --network host ryansch/unifi-rpi:{{ unifi_controller_version }}
+
+ExecStop=/usr/bin/{{ container_runtime }} stop unifi-rpi
+
+[Install]
+WantedBy=multi-user.target
