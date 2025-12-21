@@ -2,7 +2,8 @@
 Description=Podman cleanup timer
 
 [Timer]
-OnUnitInactiveSec=12h
+OnCalendar=*-*-* 01:00:00
+Unit=podman-cleanup.service
 
 [Install]
 WantedBy=timers.target
